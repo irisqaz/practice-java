@@ -42,22 +42,26 @@ public class CountBlobs2 {
         // recursively mark all the 4 adjacent cells - right, left, up and down
         int row = i+1;
         int col = j;
-        if (inGrid(row, rowCount) && matrix[row][col] == 1){
+        if (inGrid(row, rowCount) && matrix[row][col] == 1 && visited[row][col] == 0){
+            marks++;
             marks = marks + markBlob(row, col, matrix, visited, rowCount, colCount);
         }
         row = i - 1;
         col = j;
-        if (inGrid(row, rowCount) && matrix[row][col] == 1){
+        if (inGrid(row, rowCount) && matrix[row][col] == 1 && visited[row][col] == 0){
+            marks++;
             marks = marks + markBlob(row, col, matrix, visited, rowCount, colCount);
         }
         row = i;
         col = j + 1;
-        if (inGrid(col, colCount) && matrix[row][col] == 1){
+        if (inGrid(col, colCount) && matrix[row][col] == 1 && visited[row][col] == 0){
+            marks++;
             marks = marks + markBlob(row, col, matrix, visited, rowCount, colCount);
         }
         row = i;
         col = j - 1;
-        if (inGrid(col, colCount) && matrix[row][col] == 1){
+        if (inGrid(col, colCount) && matrix[row][col] == 1 && visited[row][col] == 0){
+            marks++;
             marks = marks + markBlob(row, col, matrix, visited, rowCount, colCount);
         }
         /*
