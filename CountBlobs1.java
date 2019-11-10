@@ -1,52 +1,50 @@
+import java.util.Arrays;
+
 /**
- * CountBlobs
+ * CountBlobs in 1D array
  */
 public class CountBlobs1 {
 
     public static void main(String[] args) {
-        int[] matrix = { 1, 1, 0, 1, 0 ,1, 1}; 
 
-        int count = blobCount(matrix, matrix.length);
-        System.out.printf("\ncount is %d \n\n", count);
+        int[] arr = { 1, 0, 1, 1, 0, 0, 1};
+        //int[] arr = {};
+        System.out.println();
+        System.out.print(Arrays.toString(arr));
+
+        int count = blobCount(arr, arr.length);
+        System.out.printf(" -> %d \n\n", count);
     }
 
-    static int blobCount(int matrix[], int rowCount) {
-        int visited[] = new int[rowCount]; // all initialized to false
+    static int blobCount(int matrix[], int length) {
+        boolean[] visited = new boolean[length]; // all initialized to false
 
-        int count = 0;
+        int blobs = 0;
 
-        for (int i = 0; i < rowCount; i++) {
-                if (matrix[i] == 1 && visited[i] == 0) // unvisited black cell
+        for (int i = 0; i < length; i++) {
+                if (matrix[i] == 1 && !visited[i]) // a new blob
                 {
-                    count++;
-                    int visits = markVisited(i, matrix, visited, rowCount);
-                    System.out.printf("for %d, visited : %d \n", i, visits);
+                    blobs++;
+                    visited[i] = true;
+                    int neighbors = visitNeighbor(i, matrix, visited, length);
+                    //System.out.printf("\nfor %d, neighbors : %d", i, neighbors);
                 }
         }
 
-        return count;
+        return blobs;
     }
 
-    static int markVisited(int i, int[] matrix, int[] visited, int rowCount) {
+    static int visitNeighbor(int i, int[] matrix, boolean[] visited, int rowCount) {
 
-        //if (i >= rowCount)
-        //    return 0;
-
-        //if (visited[i] == 1) // already visited
-        //    return 1;
-
-        //if (matrix[i] == 0) // not a black cell
-        //    return 0;
-
-        visited[i] = 1;
-        int count = 1;
-        int next = i + 1;
-        if (isIndex(next, rowCount) && matrix[next] == 1 && visited[next] == 0){
-            // recursively mark all the 4 adjacent cells - right, left, up and down
-            count = count + markVisited(i + 1, matrix, visited, rowCount);
-                //+ markVisited(i - 1, matrix, visited, rowCount);
+        int neighbors = 0;
+        int next = i + 1; // next neighbor to the right
+        if (isIndex(next, rowCount) && matrix[next] == 1 && !visited[next]){
+            visited[next] = true;
+            neighbors++;
+            // recursively visit all the adjacent neighbors to the right
+            neighbors = neighbors + visitNeighbor(i + 1, matrix, visited, rowCount);
         }
-        return count;
+        return neighbors;
     }
 
     private static boolean isIndex(int i, int rowCount) {
