@@ -26,7 +26,7 @@ public class CountBlobs1 {
                 {
                     blobs++;
                     visited[i] = true;
-                    int neighbors = visitNeighbor(i, matrix, visited, length);
+                    visitNeighbor(i, matrix, visited, length);
                     //System.out.printf("\nfor %d, neighbors : %d", i, neighbors);
                 }
         }

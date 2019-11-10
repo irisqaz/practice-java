@@ -73,8 +73,4 @@ public class CountBlobs2 {
         return row >= 0 && row < rowCount;
     }
 
-    private static void markVisited(int[][] visited, int i, int j) {
-        visited[i][j] = 1;
-    }
-
 }

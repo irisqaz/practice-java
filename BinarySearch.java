@@ -40,24 +40,5 @@ public class BinarySearch {
 
         System.out.println();
     }
-
-    private static boolean search1(int[] arr, int value) {
-        boolean found = false;
-        int last = arr.length - 1;
-        int mid;
-        for (int first = 0; first <= last;){
-            mid = first + (last - first) / 2;
-            //System.out.printf("first: %d, mid: %d, last: %d \n", first, mid, last);
-            if (arr[mid] == value){
-                found = true;
-                break;
-            } else if (arr[mid] < value){
-                first = mid + 1;
-            } else {
-                last = mid - 1;
-            }
-        }
-        return found;
-    } 
     
 }
