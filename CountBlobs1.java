@@ -28,9 +28,6 @@ public class CountBlobs1 {
     }
 
     static int markVisited(int i, int[] matrix, int[] visited, int rowCount) {
-        if (!isIndex(i,rowCount) || matrix[i] == 0 || visited[i] == 1){
-            return 0;
-        }
 
         //if (i >= rowCount)
         //    return 0;
@@ -43,9 +40,13 @@ public class CountBlobs1 {
 
         visited[i] = 1;
         int count = 1;
-        // recursively mark all the 4 adjacent cells - right, left, up and down
-        return count + markVisited(i + 1, matrix, visited, rowCount);
+        int next = i + 1;
+        if (isIndex(next, rowCount) && matrix[next] == 1 && visited[next] == 0){
+            // recursively mark all the 4 adjacent cells - right, left, up and down
+            count = count + markVisited(i + 1, matrix, visited, rowCount);
                 //+ markVisited(i - 1, matrix, visited, rowCount);
+        }
+        return count;
     }
 
     private static boolean isIndex(int i, int rowCount) {
