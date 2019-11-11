@@ -1,9 +1,9 @@
 import java.util.Arrays;
 
 /**
- * Count Blobs in 1D array
+ * Count Blobs recursively in 1D array
  */
-public class CountBlobs1D {
+public class CountBlobs1DRec {
 
     public static void main(String[] args) {
 
@@ -34,17 +34,23 @@ public class CountBlobs1D {
     private static boolean isBlob(int i, int[] arr, boolean[] visited, int length) {
         boolean isBlob = false;
 
-        // detect blog by visiting ones and count
-        int count = 0;
-        for (int j = i; j < length && arr[j] == 1 && !visited[j]; j++) {
-            visited[j] = true;
-            count++;
-        }
+        // detect blog by recursively visiting ones and count
+        int count = visitOnes(i, arr, visited, length);
 
         if (count > 0){
             isBlob = true;
         }
-
+        //System.out.printf("\nat %d, visited %d", i, count);
         return isBlob;
+    }
+
+    private static int visitOnes(int i, int[] arr, boolean[] visited, int length) {
+        int count = 0;
+
+        if (i < length && arr[i] == 1 && !visited[i]) {
+            visited[i] = true;
+            count = 1 + visitOnes(i+1, arr, visited, length);
+        }
+        return count;
     }
 }
