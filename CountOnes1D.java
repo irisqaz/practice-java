@@ -31,6 +31,12 @@ public class CountOnes1D {
     }
 
     private static boolean isOne(int i) {
-        return i == 1;
+        boolean isOne = false;
+
+        if ( i == 1){
+            isOne = true;
+        }
+        
+        return isOne;
     }
 }

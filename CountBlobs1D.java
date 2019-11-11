@@ -22,7 +22,7 @@ public class CountBlobs1D {
         int count = 0;
 
         for (int i = 0; i < length; i++) {
-            
+
             if (isBlob(i, arr, visited, length)) {
                 count++;
             }
@@ -34,14 +34,17 @@ public class CountBlobs1D {
     private static boolean isBlob(int i, int[] arr, boolean[] visited, int length) {
         boolean isBlob = false;
 
-        if (arr[i] == 1 && !visited[i]){
-            isBlob = true;
-            visited[i] = true;
-            // visit rest of blob
-            for (int j = i + 1; j < length && arr[j] == 1; j++){
-                visited[j] = true;
-            }
+        // detect blog by visiting ones and count
+        int count = 0;
+        for (int j = i; j < length && arr[j] == 1 && !visited[j]; j++) {
+            visited[j] = true;
+            count++;
         }
+
+        if (count > 0){
+            isBlob = true;
+        }
+
         return isBlob;
     }
 }
