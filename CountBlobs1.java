@@ -7,7 +7,7 @@ public class CountBlobs1 {
 
     public static void main(String[] args) {
 
-        int[] arr = { 1, 0, 1, 1, 0, 0, 1};
+        int[] arr = { 1, 0, 1, 1, 1, 0, 1};
         //int[] arr = {};
         System.out.println();
         System.out.print(Arrays.toString(arr));
