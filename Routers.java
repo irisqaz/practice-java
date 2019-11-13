@@ -35,6 +35,8 @@ public class Routers {
 
         List<List<Integer>> adjList = adjacentList(links, numRouters);
         printAdjList(adjList);
+        int visits = visits(0, adjList, numRouters);
+        System.out.printf("number of vertices visited: %d \n", visits);
         
         for (int i = 0; i < numRouters; i++) {
             if (isCritical(i)){
@@ -43,6 +45,28 @@ public class Routers {
         }
 
         return critical;
+    }
+
+    private static int visits(int vertex, List<List<Integer>> adjList, int numRouters) {
+
+        boolean[] visited = new boolean[numRouters]; // defaults to false
+        int count = 0;
+        count = dfs(vertex, adjList, visited, count);
+        return count;
+    }
+
+    private static int dfs(int vertex, List<List<Integer>> adjList, boolean[] visited, int count) {
+        visited[vertex] = true;
+        count++;
+        System.out.printf("visited vertex %d, count is %d \n", vertex, count);
+        List<Integer> neighbors = adjList.get(vertex);
+        for (Integer v : neighbors) {
+            if (!visited[v]){
+                dfs(v, adjList, visited, count);
+            }
+        }
+
+        return count;
     }
 
     private static ArrayList<List<Integer>> adjacentList(List<List<Integer>> links, int numRouters) {
@@ -64,7 +88,7 @@ public class Routers {
     private static boolean isCritical(int i) {
         return false;
     }
-    
+
     private static void printAdjList(List<List<Integer>> adjList) {
         System.out.println("\n");
         for (int i = 0; i < adjList.size(); i++) {
