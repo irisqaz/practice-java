@@ -30,56 +30,76 @@ public class Routers {
 
         List<List<Integer>> adjList = adjacentList(links, numRouters);
         printAdjList(adjList);
-
+        
         for (int i = 0; i < numRouters; i++) {
-            int visits = visits(i, adjList, numRouters);
-            System.out.printf("number of vertices visited: %d \n", visits);
-            if (isCritical(i)) {
+            //int visits = visits(i, adjList, numRouters);
+            //System.out.printf("number of vertices visited: %d \n", visits);
+            if (isCritical(i, adjList, numRouters)) {
                 critical.add(i);
             }
         }
-
+        
         return critical;
     }
 
-    private static int visits(int vertex, List<List<Integer>> adjList, int numRouters) {
+    private static boolean isCritical(int tvertex, List<List<Integer>> adjList, int numRouters) {
+        boolean isCritical = false;
+
+        for (int i = 0; i < numRouters; i++) {
+            if (i != tvertex) {
+                int count = visits(i, tvertex, adjList, numRouters);
+                if(count != 6){
+                    isCritical = true;
+                    break;
+                }
+            }
+        }
+
+        return isCritical;
+    }
+
+    private static int visits(int vertex, int tvertex, List<List<Integer>> adjList, int numRouters) {
 
         // boolean[] visited = new boolean[numRouters]; // defaults to false
         HashSet<Integer> visited = new HashSet<>();
-        dfs(vertex, adjList, visited);
+        dfs(vertex, tvertex, adjList, visited);
         return visited.size();
     }
 
-    private static void dfs(int vertex, List<List<Integer>> adjList, HashSet<Integer> visited) {
+    private static void dfs(int vertex, int tvertex, List<List<Integer>> adjList, HashSet<Integer> visited) {
+
         visited.add(vertex);
-        //System.out.printf("visited vertex %d, count is %d \n", vertex, visited.size());
-        List<Integer> neighbors = adjList.get(vertex);
-        for (Integer v : neighbors) {
-            if (!visited.contains(v)) {
-                dfs(v, adjList, visited);
+
+        for (Integer v : adjList.get(vertex)) {
+            if(!visited.contains(v) && v != tvertex){
+                dfs(v, tvertex, adjList, visited);
             }
         }
+
     }
 
-    private static ArrayList<List<Integer>> adjacentList(List<List<Integer>> links, int numRouters) {
+    private static ArrayList<List<Integer>> adjacentList(List<List<Integer>> edges, int numRouters) {
+        //ArrayList<List<Integer>> adj = new ArrayList<>(numRouters);
+        
         ArrayList<List<Integer>> adj = new ArrayList<>(numRouters);
-        // initialize
+        
+        // Declare and Initialize empty LinkedList
         for (int i = 0; i < numRouters; i++) {
-            adj.add(new LinkedList<Integer>());
+            adj.add(new LinkedList<>());            
         }
-        for (int i = 0; i < numRouters; i++) {
-            List<Integer> edge = links.get(i);
-            Integer v1 = edge.get(0);
-            Integer v2 = edge.get(1);
+
+        // Transfer edges to adj list
+        for (List<Integer> edge : edges) {
+            int v1 = edge.get(0);
+            int v2 = edge.get(1);
             adj.get(v1).add(v2);
             adj.get(v2).add(v1);
         }
+
         return adj;
     }
 
-    private static boolean isCritical(int i) {
-        return false;
-    }
+
 
     private static void printAdjList(List<List<Integer>> adjList) {
         System.out.println("\n");
