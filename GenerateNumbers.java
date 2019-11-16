@@ -7,15 +7,16 @@ import java.util.Random;
 public class GenerateNumbers {
 
     public static void main(String[] args) {
-        int N = 10;
-        int size = 1000;
+        Random rand = new Random();
+        int N = rand.nextInt(10);
+        int size = rand.nextInt(100);
         int[] nums = getNums(N, size);
         System.out.printf("\nAn array of %d numbers %s \n\n", N, Arrays.toString(nums));
     }
 
     private static int[] getNums(int length, int size) {
         // return an array of integers with values
-        // between 2 and N
+        // between 0 and size
         int[] nums = new int[length];
 
         Random rand = new Random();
