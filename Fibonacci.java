@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -7,10 +6,19 @@ import java.util.Random;
 public class Fibonacci {
 
     private static long fib(int n) {
+        // n < 2
+        // fib(0) is 0
+        // fib(1) is 1
+        // n >= 2
+        // fib(2) is fib(1) + fib(0)
+        //   ^         ^        ^
+        //   |         |        |
+        // fib(3) is fib(2) + fib(1)
+        // . . .
         long[] fib = new long[3];
+
         fib[0] = 0;
         fib[1] = 1;
-
         if (n < 2){
             return fib[n];
         }
