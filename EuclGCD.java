@@ -35,9 +35,11 @@ public class EuclGCD {
 
         System.out.println();
         for (int i = 0; i < 5; i++) {
+            int min = 0;
+            int max = Integer.MAX_VALUE - 1 - min;
 
-            int a = getInteger(0, 100);
-            int b = getInteger(0, 100);
+            int a = getInteger(min, max);
+            int b = getInteger(min, max);
             System.out.printf("(%d,%d)", a, b);
             int result1 = gcd(a, b);
             int result2 = gcdIter(a, b);

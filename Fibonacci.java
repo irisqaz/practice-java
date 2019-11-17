@@ -6,14 +6,15 @@ import java.util.Random;
 public class Fibonacci {
 
     private static long fib(int n) {
-        // n < 2
+        // when n < 2
         // fib(0) is 0
         // fib(1) is 1
-        // n >= 2
+        // when n >= 2
         // fib(2) is fib(1) + fib(0)
         //   ^         ^        ^
         //   |         |        |
         // fib(3) is fib(2) + fib(1)
+        // fib(4) is fib(3) + fib(2)
         // . . .
         long[] fib = new long[3];
 
