@@ -2,12 +2,12 @@ import java.util.Arrays;
 import java.util.Random;
 
 /**
- * MaxNumbers
+ * Max2Numbers
  */
-public class MaxNumbers {
+public class Max2Numbers {
 
     // find2Max returns the two largest values
-    // in nums.  nums in at least length 2
+    // in nums.  nums is at least length 2
     private static int[] find2Max(int[] nums) {
         int[] res = new int[2];
         
