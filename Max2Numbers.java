@@ -10,7 +10,20 @@ public class Max2Numbers {
     // in nums.  nums is at least length 2
     private static int[] find2Max(int[] nums) {
         int[] res = new int[2];
-        
+
+        res[0] = 0;
+        res[1] = 0;
+
+        for (int val : nums) {
+            if(val > res[0]){
+                res[1] = res[0];
+                res[0] = val;
+            }else{
+                res[1] = Math.max(res[1], val);
+            }
+            
+        }
+
         return res;
     }
     public static void main(String[] args) {

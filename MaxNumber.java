@@ -11,6 +11,20 @@ public class MaxNumber {
     private static int findMax(int[] nums) {
         int res = 0;
         
+        // for(int i = 0; i <= nums.length - 1; i++){
+        //     // nums[i] -> result
+        //     // if (nums[i] > res){
+        //     //     res = nums[i];
+        //     // };
+
+        //     res = Math.max(nums[i], res);
+
+        // }
+
+        for (int val : nums) {
+            res = Math.max(val, res);
+        }
+
         return res;
     }
     public static void main(String[] args) {
