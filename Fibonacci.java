@@ -20,7 +20,6 @@ public class Fibonacci {
 
         fib[0] = 0;
         fib[1] = 1;
-        fib[2] = fib[1] + fib[0];
         
         return fib[2];
     }
