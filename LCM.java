@@ -7,7 +7,8 @@ public class LCM {
 
     private static long lcm(int a, int b) {
         long result = (long) 0;
-
+        long temp = a / gcd(a, b);
+        result = temp * b;
 
         return result;        
     }

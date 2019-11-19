@@ -8,10 +8,35 @@ public class GCD {
     private static int gcd(int a, int b) {
         // gcd is a when b is 0
         // otherwise continue to find it
-        int result = 0; // default when b == 0
+        // int result = 0; // default when b == 0
+        
+        // if(b == 0){
+        //     return a;
+        // }
 
+        // int r = a % b;
+        // return gcd(b, r);
+        
+        // int result = a; //b = 0
+        
+        // if (b != 0){
+        //     int r = a % b;
+        //     result = gcd(b, r);
+        // }
+
+        // return result;
+
+        int result = a; // b = 0
+
+        while (b != 0){
+            int r = a % b;
+            a = b;
+            b = r;
+            result = a;
+        }
 
         return result;
+
     }
     public static void main(String[] args) {
 
