@@ -15,6 +15,7 @@ public class CopyRotate {
 
         return res;
     }
+
     public static void main(String[] args) {
 
         System.out.println();
@@ -22,17 +23,17 @@ public class CopyRotate {
 
             int N = getInt(0, 6);
             int[] nums = getNums(N, 100);
-            //String padded = String.format("%1$25s", Arrays.toString(nums));
+            // String padded = String.format("%1$25s", Arrays.toString(nums));
             System.out.printf("%25s", Arrays.toString(nums));
 
             int[] result = rotate(nums);
             int[] soln = solution(nums);
 
             System.out.printf(" -> %-25s ", Arrays.toString(result));
-            if (!Arrays.equals(result, soln)){
+            if (!Arrays.equals(result, soln)) {
                 System.out.printf(" X expected: %s ", Arrays.toString(soln));
             } else {
-                System.out.print(" correct");
+                System.out.printf(" correct %s", Arrays.toString(soln));
             }
             System.out.println();
         }
@@ -56,15 +57,19 @@ public class CopyRotate {
         int spread = max - min;
         return new Random().nextInt(spread + 1) + min;
     }
+
     private static int[] solution(int[] nums) {
         int[] res = new int[nums.length];
 
         int length = nums.length;
-        int last = length - 1;
-        for (int i = 0; i <= last; i++) {
-            res[(i+1) % length] = nums[i];
+        if (length > 0) {
+            int last = length - 1;
+            for (int i = last; i >= 1; i--) {
+                res[i] = nums[i - 1];
+            }
+            res[0] = nums[last];
         }
         return res;
     }
- 
+
 }

@@ -2,22 +2,16 @@ import java.util.Arrays;
 import java.util.Random;
 
 /**
- * CopyShift
+ * Rotate
  */
-public class CopyShift {
+public class Rotate {
 
-    // shift returns a new array
-    // with the elements from nums
-    // shifted one position to the right
-    // if available
-    // [2, 4, 1, 9]
-    // | | |
-    // V V V
-    // [0, 0, 0, 0] -> [0, 2, 4, 1]
-    private static int[] shift(int[] nums) {
-        int[] res = new int[nums.length];
+    // rotate returns the same array nums
+    // rotated one position to the right
+    // [2, 4, 1, 9] -> [9, 2, 4, 1]
+    private static int[] rotate(int[] nums) {
 
-        return res;
+        return nums;
     }
 
     public static void main(String[] args) {
@@ -30,8 +24,10 @@ public class CopyShift {
             // String padded = String.format("%1$25s", Arrays.toString(nums));
             System.out.printf("%25s", Arrays.toString(nums));
 
-            int[] result = shift(nums);
-            int[] soln = solution(nums);
+            int[] copy1 = Arrays.copyOf(nums, nums.length);
+            int[] result = rotate(copy1);
+            int[] copy2 = Arrays.copyOf(nums, nums.length);
+            int[] soln = solution(copy2);
 
             System.out.printf(" -> %-25s ", Arrays.toString(result));
             if (!Arrays.equals(result, soln)) {
@@ -64,15 +60,16 @@ public class CopyShift {
 
     private static int[] solution(int[] nums) {
         int length = nums.length;
-        int[] res = new int[length];
 
         if (length > 1) {
-            int last = nums.length - 1;
+            int last = length - 1;
+            int temp = nums[last];
             for (int i = last; i >= 1; i--) {
-                res[i] = nums[i - 1];
+                nums[i] = nums[i-1];
             }
+            nums[0] = temp;
         }
-        return res;
+        return nums;
     }
 
 }
