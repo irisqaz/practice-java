@@ -27,27 +27,33 @@ public class LinkedList {
         return result;
     }
 
-    public void addFront(int value){
+    public void addFront(int value) {
+
         Node temp = new Node(value);
-        temp.next = head;
-        head = temp;
-        if (tail == null){
+
+        if (this.length() == 0) {
+            head = temp;
             tail = temp;
+        } else {
+            temp.next = head;
+            head = temp;
         }
+
         this.length++;
     }
 
-    public void addLast(int value){
+    public void addLast(int value) {
+
         Node temp = new Node(value);
 
-        if(tail == null){
+        if (this.length() == 0) {
             head = temp;
             tail = temp;
         } else {
             tail.next = temp;
             tail = temp;
         }
-        
+
         this.length++;
     }
 
