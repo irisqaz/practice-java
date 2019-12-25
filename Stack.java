@@ -25,9 +25,9 @@ public class Stack {
         return result;
     }
 
-    public void push(int value) {
+    public void push(final int value) {
 
-        Node temp = new Node(value);
+        final Node temp = new Node(value);
 
         if (this.length() == 0) {
             head = temp;
@@ -40,19 +40,19 @@ public class Stack {
     }
 
     public void pop() {
-        if(this.length > 0){
+        if (this.length > 0) {
             head = head.next;
             this.length--;
         }
-        
+
     }
 
     public int length() {
         return this.length;
     }
 
-    public static void main(String[] args) {
-        Stack stack = new Stack();
+    public static void main(final String[] args) {
+        final Stack stack = new Stack();
         stack.push(24);
         stack.push(66);
         stack.pop();
@@ -60,17 +60,18 @@ public class Stack {
         stack.pop();
         System.out.println(stack);
     }
+    class Node {
+        int value;
+        Node next;
+    
+        Node(final int value) {
+            this.value = value;
+            this.next = null;
+        }
+        
+        public String toString() {
+            return Integer.toString(this.value);
+        }
+    }
 }
 
-class Node {
-    int value;
-    Node next;
-    Node(int value){
-        this.value = value;
-        this.next = null;
-    }
-    
-    public String toString() {
-        return Integer.toString(this.value);
-    }
-}
