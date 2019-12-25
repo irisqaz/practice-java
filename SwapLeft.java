@@ -2,14 +2,18 @@ import java.util.Arrays;
 import java.util.Random;
 
 /**
- * CopyShift
+ * SwapLeft
  */
-public class CopyShift {
+public class SwapLeft {
 
-    private static int[] shift(int[] nums) {
-        int[] res = new int[nums.length];
+    // swapL returns the same array nums
+    // shifted one position to the left
+    // because nums is length 2, it is
+    // a swap
+    // [2, 4] -> [4, 2]
+    private static int[] swapL(int[] nums) {
 
-        return res;
+        return nums;
     }
 
     public static void main(String[] args) {
@@ -17,12 +21,14 @@ public class CopyShift {
         System.out.println();
         for (int i = 0; i < 5; i++) {
 
-            int N = getInt(0, 6);
+            // int N = getInt(0, 6);
+            int N = 2;
             int[] nums = getNums(N, 100);
             // String padded = String.format("%1$25s", Arrays.toString(nums));
             System.out.printf("%25s", Arrays.toString(nums));
 
-            int[] result = shift(nums);
+            int[] copy = Arrays.copyOf(nums, nums.length);
+            int[] result = swapL(copy);
             int[] soln = solution(nums);
 
             System.out.printf(" -> %-25s ", Arrays.toString(result));
@@ -49,22 +55,13 @@ public class CopyShift {
         return nums;
     }
 
-    private static int getInt(int min, int max) {
-        int spread = max - min;
-        return new Random().nextInt(spread + 1) + min;
-    }
-
     private static int[] solution(int[] nums) {
-        int length = nums.length;
-        int[] res = new int[length];
-
-        if (length > 1) {
-            int last = nums.length - 1;
-            for (int i = last; i >= 1; i--) {
-                res[i] = nums[i - 1];
-            }
+        int temp = nums[0];
+        {
+            nums[0] = nums[1];
         }
-        return res;
+        nums[1] = temp;
+        return nums;
     }
 
 }

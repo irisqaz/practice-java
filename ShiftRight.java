@@ -2,11 +2,16 @@ import java.util.Arrays;
 import java.util.Random;
 
 /**
- * Swap
+ * ShiftRight
  */
-public class Swap {
+public class ShiftRight {
 
-    private static int[] shift(int[] nums) {
+    // shiftR returns the same array nums
+    // shifted one position to the right
+    // because the last element is moved
+    // to the beginning, it is a rotation
+    // [2, 4, 1, 9] -> [9, 2, 4, 1]
+    private static int[] shiftR(int[] nums) {
 
         return nums;
     }
@@ -16,14 +21,15 @@ public class Swap {
         System.out.println();
         for (int i = 0; i < 5; i++) {
 
-            //int N = getInt(0, 6);
-            int N = 2;
+            int N = getInt(0, 6);
             int[] nums = getNums(N, 100);
             // String padded = String.format("%1$25s", Arrays.toString(nums));
             System.out.printf("%25s", Arrays.toString(nums));
 
-            int[] result = shift(nums);
-            int[] soln = solution(nums);
+            int[] copy1 = Arrays.copyOf(nums, nums.length);
+            int[] result = shiftR(copy1);
+            int[] copy2 = Arrays.copyOf(nums, nums.length);
+            int[] soln = solution(copy2);
 
             System.out.printf(" -> %-25s ", Arrays.toString(result));
             if (!Arrays.equals(result, soln)) {
@@ -49,14 +55,25 @@ public class Swap {
         return nums;
     }
 
+    private static int getInt(int min, int max) {
+        int spread = max - min;
+        return new Random().nextInt(spread + 1) + min;
+    }
+
     private static int[] solution(int[] nums) {
-        // make a copy to avoid changing nums
-        // needed to make the test comparison work
-        int[] result = Arrays.copyOf(nums, nums.length);
-        int temp = result[0];
-        result[0] = result[1];
-        result[1] = temp;
-        return result;
+        int length = nums.length;
+
+        if (length > 1) {
+            int last = length - 1;
+            int temp = nums[last];
+
+            for (int i = last-1; i >= 0; i--) {
+                nums[i+1] = nums[i];
+            }
+
+            nums[0] = temp;
+        }
+        return nums;
     }
 
 }

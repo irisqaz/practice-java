@@ -2,14 +2,16 @@ import java.util.Arrays;
 import java.util.Random;
 
 /**
- * Rotate
+ * ShiftLeft
  */
-public class Rotate {
+public class ShiftLeft {
 
-    // rotate returns the same array nums
-    // rotated one position to the right
+    // shiftL returns the same array nums
+    // shifted one position to the left
+    // because the first element is moved
+    // to the end, it is a rotation
     // [2, 4, 1, 9] -> [9, 2, 4, 1]
-    private static int[] rotate(int[] nums) {
+    private static int[] shiftL(int[] nums) {
 
         return nums;
     }
@@ -25,7 +27,7 @@ public class Rotate {
             System.out.printf("%25s", Arrays.toString(nums));
 
             int[] copy1 = Arrays.copyOf(nums, nums.length);
-            int[] result = rotate(copy1);
+            int[] result = shiftL(copy1);
             int[] copy2 = Arrays.copyOf(nums, nums.length);
             int[] soln = solution(copy2);
 
@@ -63,11 +65,13 @@ public class Rotate {
 
         if (length > 1) {
             int last = length - 1;
-            int temp = nums[last];
-            for (int i = last; i >= 1; i--) {
-                nums[i] = nums[i-1];
+            int temp = nums[0];
+
+            for (int i = 0; i <= last-1; i++) {
+                nums[i] = nums[i+1];
             }
-            nums[0] = temp;
+            
+            nums[last] = temp;
         }
         return nums;
     }
