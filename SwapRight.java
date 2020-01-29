@@ -11,10 +11,14 @@ public class SwapRight {
     // because nums is length 2, it is
     // a swap
     // [2, 4] -> [4, 2]
-    private static int[] swalR(int[] nums) {
+    private static int[] swalR(int[] nums){
+        
         int temp = nums[1];
+
         nums[1] = nums[0];
+
         nums[0] = temp;
+
         return nums;
     }
 

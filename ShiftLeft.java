@@ -10,8 +10,22 @@ public class ShiftLeft {
     // shifted one position to the left
     // because the first element is moved
     // to the end, it is a rotation
-    // [2, 4, 1, 9] -> [9, 2, 4, 1]
+    // [2, 4, 1, 9] -> [4, 1, 9, 2]
     private static int[] shiftL(int[] nums) {
+        int length = nums.length;
+
+        if (length == 0){
+            return nums;
+        }
+
+        int last = length - 1;
+
+        int temp = nums[0];
+
+        for (int i = 0; i <= last - 1; i++) {
+            nums[i] = nums[i+1];
+        }        
+        nums[last] = temp;
 
         return nums;
     }

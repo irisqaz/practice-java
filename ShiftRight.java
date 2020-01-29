@@ -13,8 +13,23 @@ public class ShiftRight {
     // [2, 4, 1, 9] -> [9, 2, 4, 1]
     private static int[] shiftR(int[] nums) {
 
+        int length = nums.length;
+
+        if (length == 0){
+            return nums;
+        }
+
+        int last = length - 1;
+
+        int temp = nums[last];
+
+        for (int i = last; i >= 1; i--) {
+            nums[i] = nums[i-1];
+        }        
+        nums[0] = temp;
+
         return nums;
-    }
+     }
 
     public static void main(String[] args) {
 
