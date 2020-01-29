@@ -12,6 +12,15 @@ public class SwapLeft {
     // a swap
     // [2, 4] -> [4, 2]
     private static int[] swapL(int[] nums) {
+        // int a = 88;
+        // int b = 65;
+        // int temp = a;
+        // a = b;
+        // b = temp;
+
+        int temp = nums[0];
+        nums[0] = nums[1];
+        nums[1] = temp;
 
         return nums;
     }

@@ -12,7 +12,9 @@ public class SwapRight {
     // a swap
     // [2, 4] -> [4, 2]
     private static int[] swalR(int[] nums) {
-
+        int temp = nums[1];
+        nums[1] = nums[0];
+        nums[0] = temp;
         return nums;
     }
 
